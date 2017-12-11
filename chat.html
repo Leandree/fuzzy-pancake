@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>chat</title>
+</head>
+
+<script src="jquery.js"></script>
+<script src="ajax_refacto.js" ></script>
+<script src="jquery-ui/jquery-ui.js"></script>
+<script src="utils.js" ></script>
+
+<script type="text/javascript">
+
+	var selfEndPoint = "http://localhost:9876/"
+	
+			jQuery(document).ready(function(){
+			     setInterval(refresh_message, 1000);
+			});
+
+			function refresh_message()
+			{
+					ajax({	url:selfEndPoint,
+						callback : function(rep){
+							var data = JSON.parse(rep);
+
+							data.forEach(function(msg){
+								p = $("<p></p>").text(msg)
+								$("#discussion").append(p)
+							})
+						}
+
+
+						});
+			}
+
+
+</script>
+
+<style type="text/css">
+	#discussion
+	{
+		border:1px solid black;
+		height:500px;
+		width:40%;
+	}
+	#message
+	{
+		width : 40%;
+	}
+
+</style>
+
+
+<body>
+<label>adrese du destinataire : </label>
+	<input type="text" name="adresseAmi">
+</br>
+</br>
+
+	<div id="discussion">
+		
+
+	</div>
+</br>
+
+	<textarea id="message"></textarea>
+	<input type="button" name="envoyer" value="Envoyer">
+
+</body>
+</html>
