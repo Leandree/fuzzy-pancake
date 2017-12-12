@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>chat</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 </head>
 
 <script src="jquery.js"></script>
@@ -12,31 +13,27 @@
 #discussion
 {
 	border:1px solid black;
-	height:500px;
+	height:300px;
 	width:40%;
+	overflow: auto;
 }
 #message
 {
 	width : 40%;
+}
+#input {
+	width:40%;
 }
 
 </style>
 
 
 <body>
-	<label>adrese du destinataire : </label>
-	<input type="text" name="adresseAmi" id="remoteURL">
-</br>
-</br>
-
-<div id="discussion">
-
-
-</div>
-</br>
-<form id="input">
-	<input type="text" id="message"></input>
-	<input type="submit" name="envoyer" value="Envoyer">
+	<h1 class="text-primary">iMessages</h1>
+<div class='jumbotron' id="discussion"></div>
+<form id="input" class='input-group'>
+	<input type="text" id="message" class='form-control'></input>
+	<input type="submit" name="envoyer" class='btn btn-success input-addon' value="Envoyer">
 </form>
 </body>
 <script type="text/javascript">
@@ -56,7 +53,7 @@
 				var data = JSON.parse(rep);
 
 				data.forEach(function(msg){
-					addMessage(msg);
+					addMessage(msg,"alert-success");
 
 				})
 			}
@@ -66,8 +63,8 @@
 	}
 
 
-	function addMessage(msg) {
-		p = $("<p></p>").text(msg)
+	function addMessage(msg, className) {
+		p = $("<p></p>").text(msg).addClass("alert "+className);
 		$("#discussion").append(p)
 	}
 
@@ -85,7 +82,7 @@
 				console.log("Could not send message")
 			}
 		})
-		addMessage(msg)
+		addMessage(msg,"alert-primary text-right")
 		$("#message").val("")
 		return false
 	}
