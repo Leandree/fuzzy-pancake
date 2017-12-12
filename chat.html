@@ -12,29 +12,24 @@
 <style type="text/css">
 #discussion
 {
-	border:1px solid black;
-	height:300px;
-	width:40%;
 	overflow: auto;
-}
-#message
-{
-	width : 40%;
-}
-#input {
-	width:40%;
 }
 
 </style>
 
 
 <body>
+	<div class="row">
+		<div class="col-3"></div>
+	<div class="col-6">
 	<h1 class="text-primary">iMessages</h1>
 <div class='jumbotron' id="discussion"></div>
 <form id="input" class='input-group'>
 	<input type="text" id="message" class='form-control'></input>
 	<input type="submit" name="envoyer" class='btn btn-success input-addon' value="Envoyer">
 </form>
+</div>
+</div>
 </body>
 <script type="text/javascript">
 
